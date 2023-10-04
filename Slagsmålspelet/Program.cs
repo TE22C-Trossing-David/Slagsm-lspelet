@@ -25,31 +25,31 @@ while (true)
 
     while (true)
     {
-        if (sheildRound1 <= 0)
+        if (sheildRound1 > 0)
         {
-
             sheildRound1--;
+            Console.WriteLine("");
+            Console.WriteLine(namePlayer1 + " Du har sheild i " + sheildRound1 + " rundor till");
         }
 
-        if (sheildRound2 <= 0)
-        {
-
-            sheildRound2--;
-        }
         //Damage P1
-        Console.WriteLine( namePlayer1"\n1. Slå, 2. Heal, 3. Block");
+        Console.WriteLine("");
+        Console.WriteLine(namePlayer1 + "\n1. Slå, 2. Heal, 3. Block");
         action = Console.ReadLine();
         if (action == "1")
         {
             damage = random.Next(5, 20);
             health2 -= damage;
-            Console.WriteLine();
-            if (sheildRound2 <= 0)
+            if (sheildRound2 >= 0)
             {
-                health2 += damage / 2;
+                health1 += damage / 2;
+                Console.WriteLine("Yanni han blockade och tog bara " + damage / 2 + ". Hans nya hp är " + health2);
             }
-            Console.WriteLine("Du gjorde " + damage + " och han har " + health2 + " HP");
-            Console.ReadLine();
+            else
+            {
+                Console.WriteLine("Du gjorde " + damage + " och han har " + health2 + " HP");
+                Console.ReadLine();
+            }
         }
         //Heal P1
         if (action == "2")
@@ -67,34 +67,50 @@ while (true)
             Console.ReadLine();
         }
 
-        //Damage P2
 
-        Console.WriteLine( namePlayer2"\n1. Slå, 2. Heal, 3. Block");
+
+
+
+
+
+
+        if (sheildRound2 > 0)
+        {
+            sheildRound2--;
+            Console.WriteLine("");
+            Console.WriteLine(namePlayer2 + "- Du har sheild i " + sheildRound2 + " rundor till");
+        }
+        //Damage P2
+        Console.WriteLine("");
+        Console.WriteLine(namePlayer2 + "\n1. Slå, 2. Heal, 3. Block");
         action = Console.ReadLine();
         if (action == "1")
         {
             damage = random.Next(5, 20);
-            health2 -= damage;
-            Console.WriteLine();
-            if (sheildRound2 <= 0)
+            health1 -= damage;
+            if (sheildRound1 > 0)
             {
-                health2 += damage / 2;
+                health1 += damage / 2;
+                Console.WriteLine("Yanni han blockade och tog bara " + damage / 2 + ". Hans nya hp är " + health1);
             }
-            Console.WriteLine("Du gjorde " + damage + " och han har " + health2 + " HP");
-            Console.ReadLine();
+            else
+            {
+                Console.WriteLine("Du gjorde " + damage + " och han har " + health1 + " HP");
+                Console.ReadLine();
+            }
         }
         //Heal P2
         if (action == "2")
         {
             healing = random.Next(1, 30);
-            health1 += healing;
-            Console.WriteLine("Du fick " + healing + " och har " + health1 + " HP");
+            health2 += healing;
+            Console.WriteLine("Du fick " + healing + " och har " + health2 + " HP");
             Console.ReadLine();
         }
         //Block P2
         if (action == "3")
         {
-            sheildRound1 = 2;
+            sheildRound2 = 2;
             Console.WriteLine("Du har nu sheild i 2 rundor");
             Console.ReadLine();
         }
