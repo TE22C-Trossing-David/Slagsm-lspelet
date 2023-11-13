@@ -10,8 +10,9 @@ int healing = 0;
 int sheildRound1 = 0;
 int sheildRound2 = 0;
 string action = "";
+bool ingenDed = true;
 
-while (true)
+while (ingenDed = true)
 {
     Console.WriteLine("Vad heter Spelare 1?");
     namePlayer1 = Console.ReadLine();
@@ -40,14 +41,15 @@ while (true)
         {
             damage = random.Next(5, 20);
             health2 -= damage;
-            if (sheildRound2 >= 0)
+            if (sheildRound2 > 0)
             {
                 health1 += damage / 2;
-                Console.WriteLine("Yanni han blockade och tog bara " + damage / 2 + ". Hans nya hp är " + health2);
+                Console.WriteLine("Yanni " + namePlayer2 + " blockade och tog bara " + damage / 2 + ". Hans nya hp är " + health2);
+                Console.ReadLine();
             }
             else
             {
-                Console.WriteLine("Du gjorde " + damage + " och han har " + health2 + " HP");
+                Console.WriteLine("Du gjorde " + damage + " och " + namePlayer2 + " har " + health2 + " HP");
                 Console.ReadLine();
             }
         }
@@ -56,8 +58,18 @@ while (true)
         {
             healing = random.Next(1, 30);
             health1 += healing;
-            Console.WriteLine("Du fick " + healing + " och har " + health1 + " HP");
-            Console.ReadLine();
+            if (health1 > 100)
+            {
+                health1 = 100;
+                Console.WriteLine("You now have max HP");
+                Console.ReadLine();
+            }
+            else
+            {
+
+                Console.WriteLine("Du fick " + healing + " och har " + health1 + " HP");
+                Console.ReadLine();
+            }
         }
         //Block P1
         if (action == "3")
@@ -67,7 +79,7 @@ while (true)
             Console.ReadLine();
         }
 
-
+        deathCheck();
 
 
 
@@ -91,11 +103,12 @@ while (true)
             if (sheildRound1 > 0)
             {
                 health1 += damage / 2;
-                Console.WriteLine("Yanni han blockade och tog bara " + damage / 2 + ". Hans nya hp är " + health1);
+                Console.WriteLine("Yanni " + namePlayer1 + " blockade och tog bara " + damage / 2 + ". Hans nya hp är " + health1);
+                Console.ReadLine();
             }
             else
             {
-                Console.WriteLine("Du gjorde " + damage + " och han har " + health1 + " HP");
+                Console.WriteLine("Du gjorde " + damage + " och " + namePlayer1 + " har " + health1 + " HP");
                 Console.ReadLine();
             }
         }
@@ -104,8 +117,17 @@ while (true)
         {
             healing = random.Next(1, 30);
             health2 += healing;
-            Console.WriteLine("Du fick " + healing + " och har " + health2 + " HP");
-            Console.ReadLine();
+            if (health2 > 100)
+            {
+                health2 = 100;
+                Console.WriteLine("You now have max HP");
+                Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine("Du fick " + healing + " och har " + health2 + " HP");
+                Console.ReadLine();
+            }
         }
         //Block P2
         if (action == "3")
@@ -117,4 +139,15 @@ while (true)
     }
 
 
+}
+
+ingenDed = true;
+
+void deathCheck()
+{
+    if (health1 <= 0)
+    {
+        Console.WriteLine("NÅGON DOG YANNI!!!");
+        ingenDed = false;
+    }
 }
