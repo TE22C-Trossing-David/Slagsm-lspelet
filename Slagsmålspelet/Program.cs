@@ -1,4 +1,5 @@
-﻿int health1 = 100;
+﻿
+int health1 = 100;
 int health2 = 100;
 int damage = 0;
 int round = 0;
@@ -80,10 +81,6 @@ while (ingenDed = true)
         }
 
         deathCheck();
-
-
-
-
 
 
         if (sheildRound2 > 0)
